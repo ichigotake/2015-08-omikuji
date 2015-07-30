@@ -2,8 +2,9 @@
     <string name="app_name">Omikuji</string>
     <string name="title_activity_omikuji">OmikujiActivity</string>
 
-    <string name="omikuji_placeholder">おみくじ</string>
+    <string name="omikuji_placeholder">下に引っ張っておみくじを引こう！</string>
     <string name="omikuji_result_daikichi">大吉</string>
     <string name="omikuji_result_kichi">吉</string>
+    <string name="omikuji_loading">おみくじを引いています…</string>
 
 </resources>

@@ -1,15 +1,16 @@
 package com.example.omikuji.omikuji;
 
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import java.util.Random;
 
-public class OmikujiActivity extends AppCompatActivity implements View.OnClickListener {
+public class OmikujiActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
+    private SwipeRefreshLayout refreshLayout;
     private TextView omikujiResultView;
 
     @Override
@@ -17,22 +18,21 @@ public class OmikujiActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         //findViewByIdをsetContentViewの前に実行するとnullが返るので注意する
         setContentView(R.layout.activity_omikuji);
-        findViewById(R.id.omikuji).setOnClickListener(this);
         omikujiResultView = (TextView) findViewById(R.id.omikuji_result);
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+        refreshLayout.setOnRefreshListener(this);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.omikuji:
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        omikuji();
-                    }
-                }, 3000); // 3秒後におみくじを実行する
-                break;
-        }
+    public void onRefresh() {
+        refreshLayout.setRefreshing(true);
+        omikujiResultView.setText(R.string.omikuji_loading);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                omikuji();
+            }
+        }, 3000); // 3秒後におみくじを実行する
     }
 
     private void omikuji() {
@@ -46,6 +46,7 @@ public class OmikujiActivity extends AppCompatActivity implements View.OnClickLi
             default:
                 omikujiResultView.setText(R.string.omikuji_result_kichi);
         }
+        refreshLayout.setRefreshing(false);
     }
 
 }
