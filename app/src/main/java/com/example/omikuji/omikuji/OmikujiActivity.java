@@ -1,5 +1,6 @@
 package com.example.omikuji.omikuji;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,12 @@ public class OmikujiActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.omikuji:
-                omikuji();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        omikuji();
+                    }
+                }, 3000); // 3秒後におみくじを実行する
                 break;
         }
     }
