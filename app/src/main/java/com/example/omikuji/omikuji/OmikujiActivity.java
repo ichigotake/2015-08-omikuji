@@ -1,6 +1,10 @@
 package com.example.omikuji.omikuji;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,13 +44,26 @@ public class OmikujiActivity extends AppCompatActivity implements SwipeRefreshLa
         int result = random.nextInt() % 2;
         switch (result) {
             case 1:
-                omikujiResultView.setText(R.string.omikuji_result_daikichi);
+                noticeResult(getString(R.string.omikuji_result_daikichi));
                 break;
             case 0:
             default:
-                omikujiResultView.setText(R.string.omikuji_result_kichi);
+                noticeResult(getString(R.string.omikuji_result_kichi));
         }
         refreshLayout.setRefreshing(false);
+        omikujiResultView.setText(R.string.omikuji_result_finished);
     }
 
+    private void noticeResult(CharSequence title) {
+        String message = getString(R.string.omikuji_result_message, title);
+        NotificationManager
+                notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        // setContentTitle, setContentText, setSmallIconのいずれかが欠けると通知が出ないので注意
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .build();
+        notificationManager.notify(R.attr.notification_omikuji, notification);
+    }
 }

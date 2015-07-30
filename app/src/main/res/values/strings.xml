@@ -6,5 +6,7 @@
     <string name="omikuji_result_daikichi">大吉</string>
     <string name="omikuji_result_kichi">吉</string>
     <string name="omikuji_loading">おみくじを引いています…</string>
+    <string name="omikuji_result_message">おみくじの結果は%sでした！</string>
+    <string name="omikuji_result_finished">結果が出ました！</string>
 
 </resources>
