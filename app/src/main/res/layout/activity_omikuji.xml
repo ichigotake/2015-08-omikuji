@@ -8,6 +8,17 @@
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context="com.example.omikuji.omikuji.OmikujiActivity">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/omikuji_placeholder"
+        android:id="@+id/omikuji_result"
+        android:layout_marginBottom="74dp"
+        android:layout_above="@+id/omikuji"
+        android:layout_centerHorizontal="true"/>
+    
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -2,4 +2,8 @@
     <string name="app_name">Omikuji</string>
     <string name="title_activity_omikuji">OmikujiActivity</string>
 
+    <string name="omikuji_placeholder">おみくじ</string>
+    <string name="omikuji_result_daikichi">大吉</string>
+    <string name="omikuji_result_kichi">吉</string>
+
 </resources>
