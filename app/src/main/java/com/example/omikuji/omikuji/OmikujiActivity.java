@@ -2,7 +2,9 @@ package com.example.omikuji.omikuji;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -59,10 +61,19 @@ public class OmikujiActivity extends AppCompatActivity implements SwipeRefreshLa
         NotificationManager
                 notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         // setContentTitle, setContentText, setSmallIconのいずれかが欠けると通知が出ないので注意
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+        Intent chooserIntent = Intent.createChooser(shareIntent, getString(R.string.share_title));
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, chooserIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSmallIcon(R.mipmap.ic_launcher)
+                .addAction(R.drawable.abc_ic_menu_share_mtrl_alpha, getString(R.string.share), pendingIntent)
                 .build();
         notificationManager.notify(R.attr.notification_omikuji, notification);
     }

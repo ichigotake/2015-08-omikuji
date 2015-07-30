@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Omikuji</string>
+    <string name="share">共有</string>
+    <string name="share_title">おみくじの結果を共有</string>
     <string name="title_activity_omikuji">OmikujiActivity</string>
 
     <string name="omikuji_placeholder">下に引っ張っておみくじを引こう！</string>
